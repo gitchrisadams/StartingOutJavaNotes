@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 /*
 	Christopher Adams
- 	04/29/2016
+ 	04/29
  	Java examples in Chapter 2
 */
 
