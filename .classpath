@@ -6,7 +6,6 @@
 	<classpathentry kind="src" path="Chapter003Notes"/>
 	<classpathentry kind="src" path="Chapter003Challenges"/>
 	<classpathentry kind="src" path="Chapter004Notes"/>
-	<classpathentry excluding="num001SumOfNumbers/|num002DistanceTraveled/|num003DistanceFile/|num004PenniesForPay/|num005LetterCounter/|num006FileLetterCounter/|num007HotelOccupancy/|num008AverageRainFall/|num010LargestAndSmallest/|num011CelsiusToFahrenheit/|num012BarChart/|num001WhileLoopPrimingReadInputValidate/|num002ForLoopSumNum1To100/|num003ForLoopSumOddNum1To100/|num004ForLoopDisplayNumbersBy5Backwards/|num005CombiningSentinelWithInputValidation/|num006WritingTextToAFile/|num007AppendingTextToAFile/|num008ReadingDataFromAFile/|num009DetectingEndOfAFileHasNext/|num010CheckingForInputFileExistBefCreateScanner/|num011MakingSureFileDoesExistBefWriting/|com/christopheradams/numch6P1RectangleClassAndDemo/|com/christopheradams/numch6P2RectangleClassContructors/|com/christopheradams/numch6P3PassingObjectsAsArgs/|com/christopheradams/numCh6P4OverloadingMethodsAndConstructors/|com/christopheradams/numCh6P5PackagesAndImportStatements/" kind="src" path="transition"/>
 	<classpathentry kind="src" path="Chapter004Challenges"/>
 	<classpathentry kind="src" path="Chapter004PowerPoints"/>
 	<classpathentry kind="src" path="Chapter005Notes"/>
@@ -23,6 +22,7 @@
 	<classpathentry kind="src" path="Chapter010Notes"/>
 	<classpathentry kind="src" path="Chapter010Challenges"/>
 	<classpathentry kind="src" path="Chapter012Notes"/>
+	<classpathentry kind="src" path="Chapter012Challenges"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
