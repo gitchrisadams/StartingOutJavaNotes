@@ -1,0 +1,6 @@
+SALES RECEIPT       
+Unit Price:         $20.00
+Quantity:           5
+Subtotal:           $100.00
+Sales Tax:          $6.00
+Total:              $106.00

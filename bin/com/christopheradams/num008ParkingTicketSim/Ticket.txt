@@ -1,0 +1,8 @@
+Automobile Information:
+Make:               Subaru              
+Model:              Imprezza            
+Color:              Gold                
+License #:          794567    
+Fine:               $     45.00
+Officer Name:       Officer Johnson     
+Officer Badge #:    123456              
