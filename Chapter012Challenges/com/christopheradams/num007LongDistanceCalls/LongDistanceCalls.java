@@ -136,30 +136,64 @@ public class LongDistanceCalls extends JFrame
 		 */
 		public void actionPerformed(ActionEvent e)
 		{
-			if(daytimeRadioButton.isSelected())
+			// Constants:
+			final double DAYTIME_RATE = .07;
+			final double EVENING_RATE = .12;
+			final double OFF_PEAK = .05;
+			
+			// Variables:
+			double numberOfMinutes = 0;
+			double chargeForCall = 0;
+			String input = "";
+			
+			input = numMinutesTextField.getText();
+			
+			while(input.equals(""))
 			{
-				System.out.println("Daytime selected");
+				JOptionPane.showMessageDialog(null, String.format("Minutes can't be blank and must be greater than 0"), 
+						"ERROR!", JOptionPane.INFORMATION_MESSAGE);
+				input = JOptionPane.showInputDialog("Enter number of minutes: ");
 			}
-			else if(eveningRadioButton.isSelected())
+			
+			numberOfMinutes = Double.parseDouble(input);
+			
+			if(numberOfMinutes > 0)
 			{
-				System.out.println("Evening is selected");
-			}
-			else if(offPeakRadioButton.isSelected())
-			{
-				System.out.println("Off peak is selected");
+				if(daytimeRadioButton.isSelected())
+				{
+					chargeForCall = numberOfMinutes * DAYTIME_RATE;
+					displayPhoneBill(chargeForCall);
+				}
+				else if(eveningRadioButton.isSelected())
+				{
+					chargeForCall = numberOfMinutes * EVENING_RATE;
+					displayPhoneBill(chargeForCall);
+				}
+				else if(offPeakRadioButton.isSelected())
+				{
+					chargeForCall = numberOfMinutes * OFF_PEAK;
+					displayPhoneBill(chargeForCall);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, String.format("You must make a selection..."), 
+							"ERROR!", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 			else
 			{
-				System.out.println("Nothing is selected");
+				JOptionPane.showMessageDialog(null, String.format("Minutes can't be blank and must be greater than 0"), 
+						"ERROR!", JOptionPane.INFORMATION_MESSAGE);
 			}
 			
-
-//			// Display the results:
-//			JOptionPane.showMessageDialog(null, 
-//				String.format("Total bill with labor and parts included is: $%,.2f%n", 
-//						totalBill), 
-//						"Total Bill", JOptionPane.INFORMATION_MESSAGE);
 		}
+	}
+	
+	public void displayPhoneBill(double chargeForCall)
+	{
+		// Display the results:
+		JOptionPane.showMessageDialog(null, String.format("Total phone bill is: $%,.2f%n", 
+				chargeForCall), "Total Phone Bill", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	
