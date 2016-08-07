@@ -23,6 +23,7 @@
 	<classpathentry kind="src" path="Chapter010Challenges"/>
 	<classpathentry kind="src" path="Chapter012Notes"/>
 	<classpathentry kind="src" path="Chapter012Challenges"/>
+	<classpathentry kind="src" path="Chapter013Notes"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
