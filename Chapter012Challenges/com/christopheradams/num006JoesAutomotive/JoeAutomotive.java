@@ -9,7 +9,7 @@ import java.awt.event.*; // Needed for ActionListener Interface
 public class JoeAutomotive extends JFrame
 {
 	/***** Fields *****/
-	// Create 16 panels:
+	// Create panels:
 	private JPanel panel1;					
 	private JPanel panel2;
 	private JPanel panel3;
@@ -20,24 +20,23 @@ public class JoeAutomotive extends JFrame
 	private JPanel panel8;
 	private JPanel panel9;
 	private JPanel panel10;
-	
-	// Label references:
-	private JLabel adultTicketsPriceLabel;
-	private JLabel adultTicketsSoldLabel;
-	private JLabel kidTicketsPriceLabel;
-	private JLabel kidTicketsSoldLabel;
-	
-	// Text field references:
-	private JTextField adultTicketsPriceTextField;
-	private JTextField adultTicketsSoldTextField;
-	private JTextField kidTicketPriceTextField;
-	private JTextField kidTicketSoldTextField;
 
+	// Empty String for spacing after chooseServiceLabel(no checkbox here)
+	private JLabel emptyStringLabel;
 	
+	// Checkboxes:
+	private JCheckBox oilChangeCheckBox;
+	private JCheckBox lubeCheckBox;
+	private JCheckBox radiatorFlushCheckBox;
+	private JCheckBox trannyFlushCheckBox;
+	private JCheckBox inspectionCheckBox;
+	private JCheckBox mufflerCheckBox;
+	private JCheckBox tireRotationCheckBox;
+	private JCheckBox otherCheckBox;
+
 	// Calculate button:
 	private JButton calcButton;
 	
-	private JLabel emptyStringLabel;				// Empty string for alignment.
 	private final int WINDOW_WIDTH = 600;			// Width of the window.
 	private final int WINDOW_HEIGHT = 400;			// Height of window.
 	
@@ -47,7 +46,7 @@ public class JoeAutomotive extends JFrame
 	public JoeAutomotive()
 	{
 		// Set the windows title:
-		setTitle("Theater Revenue");
+		setTitle("Joe's Automotive Service Selector(JASS)");
 		
 		// Set the size of the window:
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -80,22 +79,18 @@ public class JoeAutomotive extends JFrame
 	
 	public void buildPanel()
 	{
-		// Create labels and text field objects:
-		adultTicketsPriceLabel = new JLabel("Price per adult ticket:");
-		adultTicketsPriceTextField = new JTextField(10);
-		
-		adultTicketsSoldLabel = new JLabel("Number of adult tickets sold:");
-		adultTicketsSoldTextField = new JTextField(10);
-		
-		kidTicketsPriceLabel = new JLabel("Price per child ticket:");
-		kidTicketPriceTextField = new JTextField(10);
-		
-		kidTicketsSoldLabel = new JLabel("Number of child tickets sold:");
-		kidTicketSoldTextField = new JTextField(10);
-		
-		
-		// Empty string for spacing:
+		// Create label objects:
 		emptyStringLabel = new JLabel("");
+		
+		// Create Checkbox objects:
+		oilChangeCheckBox = new JCheckBox("Oil change: $26");
+		lubeCheckBox = new JCheckBox("Lube job: $18");
+		radiatorFlushCheckBox = new JCheckBox("Radiator flush: $30");
+		trannyFlushCheckBox = new JCheckBox("Transmission flush: $80");
+		inspectionCheckBox = new JCheckBox("Inspection: $15");
+		mufflerCheckBox = new JCheckBox("Muffler replacement: $100");
+		tireRotationCheckBox = new JCheckBox("Tire rotation: $20");
+		otherCheckBox = new JCheckBox("Other non-routine service: $20/hr");
 		
 		// Button to calculate:
 		calcButton = new JButton("Calculate Fees");
@@ -116,17 +111,17 @@ public class JoeAutomotive extends JFrame
 		panel10 = new JPanel();
 
 		// Add the label, text field, and button components to the panel.
-		panel1.add(adultTicketsPriceLabel);
-		panel2.add(adultTicketsPriceTextField);
+		panel1.add(oilChangeCheckBox);
+		panel2.add(lubeCheckBox);
 		
-		panel3.add(adultTicketsSoldLabel);
-		panel4.add(adultTicketsSoldTextField);
+		panel3.add(radiatorFlushCheckBox);
+		panel4.add(trannyFlushCheckBox);
 		
-		panel5.add(kidTicketsPriceLabel);
-		panel6.add(kidTicketPriceTextField);
+		panel5.add(inspectionCheckBox);
+		panel6.add(mufflerCheckBox);
 		
-		panel7.add(kidTicketsSoldLabel);
-		panel8.add(kidTicketSoldTextField);
+		panel7.add(tireRotationCheckBox);
+		panel8.add(otherCheckBox);
 
 		// Add an empty string to the panel so the calculate button is under
 		// the text fields. In grid layout this pushes the button to the right.
@@ -149,134 +144,83 @@ public class JoeAutomotive extends JFrame
 		 */
 		public void actionPerformed(ActionEvent e)
 		{
-			String input;						// To hold the user's raw input.
-			double pricePerAdultTicket;			// Price per adult ticket.
-			double pricePerKidTicket;			// Price per child ticket.
-			int numAdultTicketsSold;			// The number of adult tickets sold.
-			int numKidTicketsSold;				// The number of child tickets sold.
-			double grossRevenueAdultTickets;	// Gross revenue for adult tickets.
-			double netRevenueAdultTickets;		// Net Revenue for adult tickets.
-			double grossRevenueKidTickets;		// Gross revenue for child tickets.
-			double netRevenueKidTickets;		// Net revenue for child tickets.
-			double totalGrossRevenue;			// Total revenue of adult and child tickets.
-			double totalNetRevenue;				// The total net revenue.
-
-			// Get the raw text entered by the user as a String:
-			input = adultTicketsPriceTextField.getText();
+			// Constants:
+			final double OIL_CHANGE = 26;
+			final double LUBE = 18;
+			final double RAD_FLUSH = 30;
+			final double TRANS_FLUSH = 80;
+			final double INSPECTION = 15;
+			final double NEW_MUFFLER = 100;
+			final double TIRE_ROTATE = 20;
+			final double LABOR_RATE = 20;				// Per hour.
 			
-			// Convert the text entered to a double:
-			pricePerAdultTicket = Double.parseDouble(input);
+			// Variables:
+			int nonRoutineServiceLaborHours = 0;
+			double nonRoutineServiceLaborTotal = 0;
+			double nonRoutineServicePartsTotal = 0;
+			double totalBill = 0;
 			
-			// Get the raw text entered by the user as a String:
-			input = adultTicketsSoldTextField.getText();
+			// Determine what checkboxes are checked:
+			if(oilChangeCheckBox.isSelected())
+			{
+				totalBill += OIL_CHANGE;
+			}
 			
-			// Convert the text entered to a double:
-			numAdultTicketsSold = Integer.parseInt(input);
+			if(lubeCheckBox.isSelected())
+			{
+				totalBill += LUBE;
+			}
 			
-			// Get the raw text entered by the user as a String:
-			input = kidTicketPriceTextField.getText();
+			if(radiatorFlushCheckBox.isSelected())
+			{
+				totalBill += RAD_FLUSH;
+			}			
 			
-			// Convert the text entered to a double:
-			pricePerKidTicket = Double.parseDouble(input);
+			if(trannyFlushCheckBox.isSelected())
+			{
+				totalBill += TRANS_FLUSH;
+			}
 			
-			// Get the raw text entered by the user as a String:
-			input = kidTicketSoldTextField.getText();
+			if(inspectionCheckBox.isSelected())
+			{
+				totalBill += INSPECTION;
+			}	
 			
-			// Convert the text entered to a double:
-			numKidTicketsSold = Integer.parseInt(input);
+			if(mufflerCheckBox.isSelected())
+			{
+				totalBill += NEW_MUFFLER;
+			}	
 			
-			// Call method to calculate the gross revenue for adult tickets:
-			grossRevenueAdultTickets = calcGrossRevenue(numAdultTicketsSold, pricePerAdultTicket);
+			if(tireRotationCheckBox.isSelected())
+			{
+				totalBill += TIRE_ROTATE;
+			}	
 			
-			// Call method to calculate the gross revenue for child tickets:
-			grossRevenueKidTickets = calcGrossRevenue(numKidTicketsSold, pricePerKidTicket);
+			if(otherCheckBox.isSelected())
+			{
+				// Get input for non-routine service and parts cost:
+				String input = JOptionPane.showInputDialog("How many hours did job take?");
+				
+				nonRoutineServiceLaborHours = Integer.parseInt(input);
+				
+				// Get the labor total by multiplying hours by the rate:
+				nonRoutineServiceLaborTotal = nonRoutineServiceLaborHours * LABOR_RATE;
+				
+				input = JOptionPane.showInputDialog("How much did the parts cost?");
+				
+				nonRoutineServicePartsTotal = Double.parseDouble(input);
+				
+				// Add the labor and parts cost to the total bill:
+				totalBill += nonRoutineServiceLaborTotal + nonRoutineServicePartsTotal;
+			}				
 			
-			// Call method to calculate net revenue of adult tickets:
-			netRevenueAdultTickets = calcNetRevenue(grossRevenueAdultTickets);
-			
-			// Call method to calculate net revenue of child tickets:
-			netRevenueKidTickets = calcNetRevenue(grossRevenueKidTickets);
-			
-			// Call method to calculate the total gross revenue:
-			totalGrossRevenue = calculateTotalGross(grossRevenueAdultTickets, grossRevenueKidTickets);
-			
-			// Call method to calculate the total net revenue:
-			totalNetRevenue = calculateTotalNet(netRevenueAdultTickets, netRevenueKidTickets);
-			
-
 			// Display the results:
 			JOptionPane.showMessageDialog(null, 
-				String.format("The total gross for adult ticket sales is: $%,.2f%n"
-						+ "The total net for adult ticket sales is: $%,.2f%n"
-						+ "The total gross for child ticket sales is: $%,.2f%n"
-						+ "The total net for child ticket sales is: $%,.2f%n"
-						+ "The total gross revenue for all ticket sales is: $%,.2f%n"
-						+ "The total net revenue for all ticket sales is: $%,.2f%n", 
-						grossRevenueAdultTickets, netRevenueAdultTickets, 
-						grossRevenueKidTickets, netRevenueKidTickets, 
-						totalGrossRevenue, totalNetRevenue), 
-						"Ticket Sales", JOptionPane.INFORMATION_MESSAGE);
+				String.format("Total bill with labor and parts included is: $%,.2f%n", 
+						totalBill), 
+						"Total Bill", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
-	
-	/**
-	 * The calcGrossRevenue() method calculates the gross revenue for ticket sales.
-	 * @param numTickets
-	 * @param pricePerTicket
-	 * @return The gross revenue of ticket sales. 
-	 */
-	public double calcGrossRevenue(int numTickets, double pricePerTicket)
-	{
-		// Variables:
-		double totalGrossRevenue;
-		
-		// Calculate the gross revenue:
-		totalGrossRevenue = numTickets * pricePerTicket;
-		
-		return totalGrossRevenue;
-	}
-	
-	/**
-	 * The calcNetRevenue() method calculates the net revenue of ticket sales.
-	 * @param grossRevenue
-	 * @return The net revenue of ticket sales.
-	 */
-	public double calcNetRevenue(double grossRevenue)
-	{
-		// Constants:
-		final double THEATER_KEEP_PERCENT = .20;
-		
-		// Variables:
-		double netRevenue = 0;
-		
-		// Calculate the net revenue:
-		netRevenue += grossRevenue * THEATER_KEEP_PERCENT;
-		
-		return netRevenue;
-	}
-	
-	/**
-	 * The calculateTotalGross() method calculates the total gross ticket sales.
-	 * @param grossRevenueAdultTickets
-	 * @param grossRevenueKidTickets
-	 * @return The total gross ticket sales.
-	 */
-	public double calculateTotalGross(double grossRevenueAdultTickets, double grossRevenueKidTickets)
-	{
-		return grossRevenueAdultTickets + grossRevenueKidTickets;
-	}
-	
-	/**
-	 * The calculateTotalNet() method calculates the total net ticket sales.
-	 * @param netRevenueAdultTickets
-	 * @param netRevenueKidTickets
-	 * @return The total net ticket sales.
-	 */ 
-	public double calculateTotalNet(double netRevenueAdultTickets, double netRevenueKidTickets)
-	{
-		return netRevenueAdultTickets + netRevenueKidTickets;
-	}
-	
 	
 	
 	/**
