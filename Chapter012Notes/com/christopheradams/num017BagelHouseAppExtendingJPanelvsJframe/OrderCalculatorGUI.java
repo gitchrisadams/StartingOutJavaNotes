@@ -14,7 +14,9 @@ public class OrderCalculatorGUI extends JFrame
    private BagelPanel bagels;     // Bagel panel
    private ToppingPanel toppings; // Topping panel
    private CoffeePanel coffee;    // Coffee panel
+   
    private GreetingPanel banner;  // To display a greeting
+   
    private JPanel buttonPanel;    // To hold the buttons
    private JButton calcButton;    // To calculate the cost
    private JButton exitButton;    // To exit the application
