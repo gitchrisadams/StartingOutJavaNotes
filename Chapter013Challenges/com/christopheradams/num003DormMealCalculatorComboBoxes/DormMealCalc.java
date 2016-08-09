@@ -1,4 +1,4 @@
-package com.christopheradams.num002DormMealCalculatorComboBoxes;
+package com.christopheradams.num003DormMealCalculatorComboBoxes;
 
 import java.awt.*;
 import java.awt.event.*;
