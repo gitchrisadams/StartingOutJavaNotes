@@ -37,7 +37,7 @@ public class MenuWindow extends JFrame
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
       // Create the messageLabel label.
-      // Swing.Constants.CENTER alignts the label to the center.
+      // Swing.Constants.CENTER Aligns the label to the center.
       messageLabel = new JLabel("Use the Text menu to " +
             "change my color and make me invisible.",
              SwingConstants.CENTER);
