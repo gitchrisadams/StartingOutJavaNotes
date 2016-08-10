@@ -10,7 +10,7 @@ import java.awt.*;    // Needed for GridLayout class
 
 public class GridPanelWindow extends JFrame
 {
-   private final int WINDOW_WIDTH = 400;   // Window width
+   private final int WINDOW_WIDTH = 300;   // Window width
    private final int WINDOW_HEIGHT = 200;  // Window height
 
    /**
