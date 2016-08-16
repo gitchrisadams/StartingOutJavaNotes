@@ -1,4 +1,4 @@
-package com.christopheradams.num002Imageviewer;
+package com.christopheradams.num002ImageViewer;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;

@@ -37,7 +37,80 @@ public class ConcatReplaceTrim
 	   
 	   // Output the String trimmed:
 	   System.out.println("\nString trimmed: " + stringTrimmed);
-
+	   /***** End Trim *****/
+	   
+	   
+	   /***** String Builder Append *****/
+	   // Create a String:
+	   StringBuilder stringToAppend = new StringBuilder();
+	   
+	   // Append a String object:
+	   stringToAppend.append("We sold ");
+	   
+	   // Output the String:
+	   System.out.println("\n" + stringToAppend);
+	   
+	   // Append an int to the String:
+	   stringToAppend.append(12);
+	   
+	   // Output the String:
+	   System.out.println("\n" + stringToAppend);
+	   
+	   // Append another String:
+	   stringToAppend.append(" doughnuts for $");
+	   
+	   // Output the String:
+	   System.out.println("\n" + stringToAppend);
+	   
+	   // Append a double to the String:
+	   stringToAppend.append(15.95);
+	   
+	   // Output the String:
+	   System.out.println("\n" + stringToAppend);
+	   /***** End String Builder Append *****/
+	   
+	   
+	   /***** Insert methods *****/
+	   // Create String builder object:
+	   StringBuilder ny = new StringBuilder("New City");
+	   
+	   // Output the String before we insert workd "york"
+	   System.out.println(ny);
+	   
+	   // Append the word "York" between New and City:
+	   // (Place start inserting, "Thing to insert ")
+	   ny.insert(4, "york ");
+	   
+	   // Output the String after inserting "york":
+	   System.out.println(ny);
+	   /***** End Insert methods *****/
+	   
+	   
+	   /***** Inserting a char array into a String Builder *****/
+	   // Create a new char array:
+	   char cArray[] = { '2', '0', ' ' };
+	   
+	   // Create a new String Builder object:
+	   StringBuilder charString = new StringBuilder("In July we sold cars.");
+	   
+	   // Insert the char's '2' and '0' and a space starting at the 16th char:
+	   charString.insert(16, cArray);
+	   
+	   // Output the String:
+	   System.out.println(charString);
+	   /***** End Inserting a char array into a String Builder *****/
+	   
+	   
+	   /***** The replace method *****/
+	   // Create a new StringBuilder object:
+	   StringBuilder strReplace = new StringBuilder("We moved from Chicago to Atlanta");
+	   
+	   // Replace the string starting at char 14 to char 21 with "New York":
+	   strReplace.replace(14, 21, "New York");
+	   
+	   // Output the String:
+	   System.out.println(strReplace);
+	   /***** End The replace method *****/
 	   
 	   
    }
